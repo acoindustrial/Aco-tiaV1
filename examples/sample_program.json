@@ -1,0 +1,10 @@
+[
+  {
+    "name": "OB1",
+    "networks": [
+      ["A := 1", "A := 0", "TON T1 IN:=TRUE", "MOVE target"],
+      ["OUT := TRUE"]
+    ],
+    "meta": {"scan_time": true}
+  }
+]

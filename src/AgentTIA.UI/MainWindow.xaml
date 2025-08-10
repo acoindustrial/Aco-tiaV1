@@ -1,0 +1,27 @@
+<Window x:Class="AgentTIA.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="AgentTIA" Height="450" Width="800">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Header="Import folder..." Click="ImportFolder_Click" />
+            </MenuItem>
+        </Menu>
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem Content="Ready" />
+        </StatusBar>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+            <TreeView x:Name="Tree" Grid.Column="0" SelectedItemChanged="Tree_SelectedItemChanged" />
+            <ScrollViewer Grid.Column="1">
+                <ItemsControl x:Name="Editor" />
+            </ScrollViewer>
+            <StackPanel Grid.Column="2" x:Name="Inspector" />
+        </Grid>
+    </DockPanel>
+</Window>

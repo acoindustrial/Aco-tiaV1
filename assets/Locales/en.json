@@ -1,0 +1,10 @@
+{
+  "AppTitle": "AgentTIA",
+  "MenuFile": "File",
+  "MenuImportFolder": "Import folder...",
+  "MenuSymbolPacks": "Symbol Packs",
+  "MenuThemes": "Themes",
+  "MenuThemeLight": "Light",
+  "MenuThemeDark": "Dark",
+  "StatusReady": "Ready"
+}

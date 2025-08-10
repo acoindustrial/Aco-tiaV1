@@ -1,2 +1,7 @@
 # Ignore TIA Portal PublicAPI DLLs copied during build
 src/Agent.OpennessBridge/lib/*.dll
+
+# Build artifacts
+dist/
+**/bin/
+**/obj/

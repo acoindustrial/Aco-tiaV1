@@ -1,0 +1,15 @@
+{
+  "name": "Default",
+  "symbols": {
+    "NO": "NO.svg",
+    "NC": "NC.svg",
+    "COIL": "COIL.svg",
+    "SET": "SET.svg",
+    "RESET": "RESET.svg",
+    "TON": "TON.svg",
+    "CTU": "CTU.svg",
+    "WIRE": "WIRE.svg",
+    "POWER_LEFT": "POWER_LEFT.svg",
+    "POWER_RIGHT": "POWER_RIGHT.svg"
+  }
+}

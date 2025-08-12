@@ -28,3 +28,10 @@ python tools/analyze.py examples/sample_program.json --export OB1 1
 ```
 
 The file is written under `exports/`.
+
+## TIA PDF Indexer
+
+Open `tools/pdf_indexer/index.html` in a browser to load a TIA print PDF.
+The viewer detects block and network headers, allows adding bookmarks and can
+export the index to JSON or a simple HTML table of contents linking to the
+PDF pages.

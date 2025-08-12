@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TIA PDF Indexer</title>
+  <style>
+    body { font-family: sans-serif; }
+    #viewer { margin-top: 1em; }
+    .page { position: relative; margin-bottom: 1em; }
+    .page button { position: absolute; top: 0; right: 0; }
+    #bookmarks { margin-top: 1em; }
+  </style>
+</head>
+<body>
+  <input type="file" id="file-input" accept="application/pdf">
+  <button id="export-btn">Export index</button>
+  <div id="viewer"></div>
+  <h3>Bookmarks</h3>
+  <ul id="bookmarks-list"></ul>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.5.141/pdf.min.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>

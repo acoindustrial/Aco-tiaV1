@@ -3,3 +3,5 @@ reports/
 exports/
 **/bin/
 **/obj/
+**/node_modules/
+**/dist/

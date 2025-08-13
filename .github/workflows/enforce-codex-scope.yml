@@ -1,1 +1,53 @@
+name: Enforce Codex Scope
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+
+jobs:
+  check-scope:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+
+      - name: Fetch base & head
+        run: |
+          git fetch --no-tags --prune --depth=1 origin \
+            +refs/heads/${{ github.base_ref }}:refs/remotes/origin/${{ github.base_ref }} \
+            +refs/heads/${{ github.head_ref }}:refs/remotes/origin/${{ github.head_ref }}
+
+      - name: Read scope from .codex-scope (if any)
+        id: scope
+        shell: bash
+        run: |
+          if [[ -f ".codex-scope" ]]; then
+            scopes=$(grep -vE '^\s*(#|$)' .codex-scope || true)
+            echo "scopes<<EOF" >> $GITHUB_OUTPUT
+            echo "$scopes" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+          else
+            echo "scopes=" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Fail if changes outside scope
+        if: steps.scope.outputs.scopes != ''
+        shell: bash
+        run: |
+          BASE="origin/${{ github.base_ref }}"
+          HEAD="origin/${{ github.head_ref }}"
+          mapfile -t CHANGED < <(git diff --name-only "$BASE...$HEAD")
+          echo "Changed files:"; printf ' - %s\n' "${CHANGED[@]}"
+
+          regex="^($(echo "${{ steps.scope.outputs.scopes }}" \
+            | sed 's,/$,,; s,^,^,; s,$,/,; s, ,\\ ,g' \
+            | tr '\n' '|' | sed 's,|$,,'))"
+          bad=()
+          for f in "${CHANGED[@]}"; do
+            [[ "$f" =~ $regex ]] || bad+=("$f")
+          done
+          if (( ${#bad[@]} )); then
+            echo "::error::Changes outside allowed scope:"
+            printf ' - %s\n' "${bad[@]}"
+            exit 1
+          fi
 

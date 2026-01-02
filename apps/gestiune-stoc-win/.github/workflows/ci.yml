@@ -1,0 +1,25 @@
+name: Build gestiune-stoc-win
+
+on:
+  push:
+    paths:
+      - 'apps/gestiune-stoc-win/**'
+  pull_request:
+    paths:
+      - 'apps/gestiune-stoc-win/**'
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run build
+        shell: pwsh
+        run: |
+          cd apps/gestiune-stoc-win
+          ./Build.ps1
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: gestiune-stoc-win
+          path: apps/gestiune-stoc-win/gestiune-stoc-win.zip
